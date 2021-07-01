@@ -1,19 +1,35 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img alt="Vue logo" src="./assets/logo.png" />
+
+    <div>
+      <Go />
+      <input type="number" placeholder="op1" v-model.number="operand1" />
+      <input type="number" placeholder="op2" v-model.number="operand2" />
+      = {{ sum }}
+    </div>
+    <button @click="sum = operand1 + operand2">+</button>
+    <button @click="sum = operand1 - operand2">-</button>
+    <button @click="sum = operand1 * operand2">*</button>
+    <button @click="sum = Math.trunc(operand1 / operand2)">/</button>
+    <button @click="sum = Math.pow(operand1, operand2)">xⁿ</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Go from "./components/Go.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Go,
+  },
+  data: () => ({
+    operand1: "",
+    operand2: "",
+    sum: 0,
+  }),
+};
 </script>
 
 <style>
@@ -24,5 +40,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+button {
+  padding: 3px 12px;
 }
 </style>
