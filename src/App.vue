@@ -40,13 +40,7 @@
         </div>
         <div class="radio">
           <div class="radio-child">
-            <input
-              type="radio"
-              id="one"
-              value="1"
-              v-model="picked"
-              @click="radio1"
-            />
+            <input type="radio" id="one" value="1" v-model="picked" checked />
             <label for="one">Операнд 1</label>
           </div>
           <div class="radio-child">
@@ -81,8 +75,15 @@ export default {
   }),
   methods: {
     numbers(number) {
-      this.operand1 = number;
+      if (this.picked == 1) {
+        this.operand1 = this.operand1.toString() + number.toString();
+        this.operand1 = Number(this.operand1);
+      } else if (this.picked == 2) {
+        this.operand2 = this.operand2.toString() + number.toString();
+        this.operand2 = Number(this.operand2);
+      }
     },
+
     fib(n) {
       return n <= 1 ? n : this.fib(n - 1) + this.fib(n - 2);
     },
